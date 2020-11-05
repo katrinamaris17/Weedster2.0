@@ -44,6 +44,12 @@ export default function ButtonAppBar() {
             color="inherit">
             About
           </Button>
+          <Button
+            component={Link}
+            to='/Feature'
+            color="inherit">
+            Feature
+          </Button>
           {
             token ?
               <Button
