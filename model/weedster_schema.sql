@@ -23,7 +23,7 @@ CREATE TABLE post (
 CREATE TABLE comments (
 	id INT AUTO_INCREMENT NOT NULL,
     message TEXT(600) NOT NULL,
-    postId INT references posts(id),
+    postId INT references post(id),
     userId INT references users(id),
     PRIMARY KEY(id)
 );
