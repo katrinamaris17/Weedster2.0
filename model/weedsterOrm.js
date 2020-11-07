@@ -69,15 +69,6 @@ const {
     }
   };
 
-  const insertComment = async (Comment, userId) => {
-    try {
-      const [ result ] = await connection.query(insertComment, [Comment, userId ]);
-      return await findCommentByIdFromDb(result.insertId);
-    } catch (e) {
-      throw new Error(e);
-    }
-  };
-
   const deleteComment = async (Comment, userId) => {
     try {
       const [ result ] = await connection.query(deleteComment, [Comment, userId ]);
