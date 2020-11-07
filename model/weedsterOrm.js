@@ -7,11 +7,12 @@
 
 const {
     getAllPosts,
-    getSinglePost,
+    getSinglePostById,
     getAllPostsByCategory,
     getAllUserPosts,
     getAllPostsAndComments,
   } = require('./weedsterQueries');
+
   const connection = require('../config/connection');
 
   const findAllPostsFromDb = async () => {
@@ -23,7 +24,77 @@ const {
       }
   };
 
+  const findAllPostsFromDb = async () => {
+    try {
+        const [ result ] = await connection.query(getSinglePostById)
+        return result;
+    } catch (e) {
+        throw new Error(e);
+    }
+};
 
+  const getAllPostsByCategory = async (category) => {
+    try {
+      const [ result ] = await connection.query(getAllPostsByCategory);
+      return result[0];
+    } catch (e) {
+      throw new Error(e);
+    }
+  };
+  
+  const getAllUserPosts = async (userId) => {
+    try {
+      const [ result ] = await connection.query(getAllUserPosts, userId);
+      return result;
+    } catch (e) {
+      throw new Error(e);
+    }
+  };
+
+  const getAllPostsAndComments = async (userId) => {
+    try {
+      const [ result ] = await connection.query(getAllPostsAndComments, userId);
+      return result;
+    } catch (e) {
+      throw new Error(e);
+    }
+  };
+
+  const insertPost = async (post, userId) => {
+    try {
+      const [ result ] = await connection.query(insertPost, [post, userId ]);
+      return await findPostByIdFromDb(result.insertId);
+    } catch (e) {
+      throw new Error(e);
+    }
+  };
+
+  const insertComment = async (Comment, userId) => {
+    try {
+      const [ result ] = await connection.query(insertComment, [Comment, userId ]);
+      return await findCommentByIdFromDb(result.insertId);
+    } catch (e) {
+      throw new Error(e);
+    }
+  };
+
+  const deleteComment = async (Comment, userId) => {
+    try {
+      const [ result ] = await connection.query(deleteComment, [Comment, userId ]);
+      return await findCommentByIdFromDb(result.deleteId);
+    } catch (e) {
+      throw new Error(e);
+    }
+  };
+
+  const deletePost = async (Post, userId) => {
+    try {
+      const [ result ] = await connection.query(deletePost, [Post, userId ]);
+      return await findPostByIdFromDb(result.deleteId);
+    } catch (e) {
+      throw new Error(e);
+    }
+  };
   module.exports = {
     findAllPostsFromDb,
   };
