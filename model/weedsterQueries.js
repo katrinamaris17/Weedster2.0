@@ -2,7 +2,7 @@
 const getAllPosts = 'SELECT title, caption FROM post;';
 
 // Get one
-const getSinglePost = 'SELECT title, caption FROM post WHERE id = ?;';
+const getSinglePostById = 'SELECT title, caption FROM post WHERE id = ?;';
 const getAllPostsByCategory = 'SELECT title, caption FROM post WHERE category = ?;';
 
 // Get all post of specific user (does not show comments, query post to see post & comments)
