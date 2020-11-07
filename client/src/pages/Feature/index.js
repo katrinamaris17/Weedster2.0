@@ -5,6 +5,7 @@ import Container from '@material-ui/core/Container';
 import {useSelector} from 'react-redux';
 import Navbar from '../../pages/common/components/Navbar';
 import { Link, useHistory } from 'react-router-dom';
+import UserPost from '../../pages/common/components/UserPost';
 
 export default function SimpleContainer() {
   const { token } = useSelector(state => state.viewer);
@@ -18,7 +19,8 @@ export default function SimpleContainer() {
       <Navbar/>
       <CssBaseline />
       <Container maxWidth="sm">
-        <Typography component="div" style={{ backgroundColor: '#cfe8fc', height: '100vh' }} />
+        <UserPost/>
+        {/* <Typography component="div" style={{ backgroundColor: '#cfe8fc', height: '100vh' }} /> */}
       </Container>
     </React.Fragment>
   );
