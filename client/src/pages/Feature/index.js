@@ -7,6 +7,7 @@ import Navbar from '../../pages/common/components/Navbar';
 import { Link, useHistory } from 'react-router-dom';
 import UserPost from '../../pages/common/components/UserPost';
 
+
 export default function SimpleContainer() {
   const { token } = useSelector(state => state.viewer);
   console.log("token",token);
