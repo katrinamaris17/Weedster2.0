@@ -68,7 +68,7 @@ const getAllPostsAndComments = async (userId) => {
 const insertPost = async (post, userId) => {
   try {
     const [result] = await connection.query(insertPostQuery, [
-      "title 1",
+      "title1",
       "edibles",
       post,
       1,

@@ -1,5 +1,5 @@
 // Get all
-const getAllPostsQuery = 'SELECT title, caption FROM post;';
+const getAllPostsQuery = 'SELECT * FROM post ORDER BY id DESC;';
 
 // Get one
 const getPostByIdQuery = 'SELECT title, caption, id, userId, category FROM post WHERE id = ?;';
