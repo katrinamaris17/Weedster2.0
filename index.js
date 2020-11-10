@@ -15,10 +15,6 @@ if (process.env.NODE_ENV === 'production') {
 
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
-app.post("/apix/post", (req,res) => {
-  console.log(req.body)
-  res.json({success: true})
-})
 app.use(routes);
 
 app.listen(PORT, () => {

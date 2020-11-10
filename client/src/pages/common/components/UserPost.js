@@ -11,7 +11,7 @@ export default function() {
 
     const clickHandler = () => {
         console.log("Hey there!", post)
-        fetch("/apix/post", {
+        fetch("/api/post", {
             method: "post", 
             headers: {
                 'Content-Type': 'application/json'
