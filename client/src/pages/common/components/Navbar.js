@@ -4,10 +4,10 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import { Link, useHistory } from 'react-router-dom';
-
-
 import {useSelector, useDispatch} from 'react-redux';
 import {setViewerToken} from '../../Viewer';
+import { blue } from '@material-ui/core/colors';
+import { createMuiTheme } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,6 +20,10 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
   },
+  navBackgroundColor : {
+    backgroundColor: '#90b144',
+  }
+ 
 }));
 
 export default function ButtonAppBar() {
@@ -36,7 +40,7 @@ export default function ButtonAppBar() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="static" className={classes.navBackgroundColor}>
         <Toolbar>
           <Button
             component={Link}
