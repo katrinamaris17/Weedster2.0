@@ -15,6 +15,7 @@ const useStyles = makeStyles({
     backgroundAttachment: 'fixed',
     backgroundPosition: 'center',
     backgroundColor: 'lightgreen',
+    height: '100vh',
   },
 center: {
   margin: 'auto',
@@ -37,16 +38,16 @@ export default function SimpleContainer() {
     history.push("/")
   }
   return (
-    <div className={classes.body}>
-    <React.Fragment>
+    <html className={classes.body}>
+    {/* <React.Fragment> */}
       <Navbar/>
       <CssBaseline />
       <Container className={classes.center}>
         <UserPost/>
         {/* <Typography component="div" style={{ backgroundColor: '#cfe8fc', height: '100vh' }} /> */}
       </Container>
-    </React.Fragment>
-    </div>
+    {/* </React.Fragment> */}
+    </html>
   );
 
   
