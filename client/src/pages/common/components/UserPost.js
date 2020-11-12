@@ -5,6 +5,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
+
 const useStyles = makeStyles({
     root: {
       minWidth: 275,
@@ -21,11 +22,19 @@ const useStyles = makeStyles({
       marginBottom: 12,
     },
     red: {
-        color: 'red',
+        color: '#A4C820',
     },
     background: {
-        backgroundColor: 'blue',
-    }
+        backgroundColor: 'white',
+    },
+    postTitle: {
+        backgroundColor: '#90b144',
+        color: 'white',
+        paddingLeft: 8,
+    },
+    post: {
+        width: '100%',
+    },
   });
 
 
@@ -78,15 +87,17 @@ export default function() {
             onChange={changeHandler}
             value={postInput}
             />
+            <br />
             <button onClick={clickHandler} className={classes.red}>Submit</button>
 
             {
                 posts?.map((post, index) => {
                     return (
-                        <Card className={`${classes.background} ${classes.root}`} key={post.id}>
+                        <div>
+                        <Card className={`${classes.background} ${classes.root} ${classes.post}`} key={post.id}>
                         <CardContent>
-                          <Typography className={classes.title} color="textSecondary" gutterBottom>
-                            {post.title}
+                          <Typography className={classes.postTitle} color="textPrimary" gutterBottom backgroundColor="#FFFFFF">
+                            <h1>{post.title}</h1>
                           </Typography>
                           <Typography variant="h5" component="h2">
                             be{bull}nev{bull}o{bull}lent
@@ -101,7 +112,8 @@ export default function() {
                           </Typography>
                         </CardContent>
                       </Card>
-
+                      <br></br>
+                      </div>
                     );
                 })
             }
