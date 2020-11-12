@@ -8,6 +8,7 @@ import Container from '@material-ui/core/Container';
 import { WrappedSignIn, WrappedSignUp } from '../Viewer';
 import {useHistory } from 'react-router-dom';
 
+
 // export default function SimpleContainer() {
 //   const history = useHistory();
 //   return (
@@ -24,6 +25,13 @@ import {useHistory } from 'react-router-dom';
 //   );
 // }
 
+function Logo() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center" img src="">
+    </Typography>
+  );
+}
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -33,6 +41,10 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     color: theme.palette.text.secondary,
   },
+ logo: {
+    margin: theme.spacing(1),
+    backgroundImage: "url('./client/public/weedleaf_24.png')"
+  },
 }));
 
 export default function FullWidthGrid() {
@@ -41,14 +53,30 @@ export default function FullWidthGrid() {
 
   return (
     <div className={classes.root}>
-      <Grid container spacing={3}>
-        <Grid item xs={12}>
+  <Grid
+    container
+    spacing={0}
+    direction="column"
+    alignItems="center"
+    justify="center"
+    style={{ minHeight: '100vh' }}
+  >
+  <Grid item xs={4}>
+  <logo className={classes.logo}></logo>
+  <Paper className={classes.paper}>
+    <WrappedSignIn history={history}></WrappedSignIn>
+    <WrappedSignUp history={history}></WrappedSignUp>
+    </Paper>
+  </Grid>   
+</Grid>
+      {/* <Grid container spacing={6}>
+        <Grid item md={4}>
           <Paper className={classes.paper}>
           <WrappedSignIn history={history}></WrappedSignIn>
           <WrappedSignUp history={history}></WrappedSignUp>
           </Paper>
         </Grid>
-      </Grid>
+      </Grid> */}
     </div>
   );
 }
