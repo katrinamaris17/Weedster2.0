@@ -39,8 +39,9 @@ const useStyles = makeStyles({
 
 
 export default function() {
-    const [ postInput, setPostInput ] = useState('');
-    const [posts, setPost] = useState([]);
+    const [ post, setPost ] = useState('');
+    const [ title, setTitle ] = useState('');
+    const [posts, setPosts] = useState([]);
     const classes = useStyles();
     const bull = <span className={classes.bullet}>•</span>;
 
@@ -48,26 +49,36 @@ export default function() {
         axios.get('/api/post')
             .then(res => {
                 console.log(res.data);
-                setPost(res.data);
+                setPosts(res.data);
             });
     }, []);
 
     const changeHandler = (e) => {
         console.log(e.target.value);
-        setPostInput(e.target.value)
+        setPost(e.target.value)
     }
 
+    const changeTitleHandler = (e) => {
+      console.log(e.target.value);
+      setTitle(e.target.value)
+  }
+
     const clickHandler = async () => {
-
+        if (post === '' || title === '') {
+          alert('needs content')
+          return
+        } 
         const res = await axios.post('/api/post', { 
-            post: postInput,
-            // category: categoryInput,
-
+            title: title,
+            caption: post,
+            category: 'whatever',
+            userId: 1,
          });
         console.log(res.data);
         const newPostsState = [res.data, ...posts];
-        setPost(newPostsState);
-        setPostInput('');
+        setPosts(newPostsState);
+        setPost('');
+        setTitle('');
         // fetch("/apix/post", {
         //     method: "post", 
         //     headers: {
@@ -81,11 +92,16 @@ export default function() {
     }
     return (
         <>
+            <input type="text" 
+            onChange={changeTitleHandler}
+            value={title}
+            />
+
             <textarea 
             rows="5" 
             cols="100" 
             onChange={changeHandler}
-            value={postInput}
+            value={post}
             />
             <br />
             <button onClick={clickHandler} className={classes.red}>Submit</button>
@@ -93,27 +109,19 @@ export default function() {
             {
                 posts?.map((post, index) => {
                     return (
-                        <div>
-                        <Card className={`${classes.background} ${classes.root} ${classes.post}`} key={post.id}>
+                      <Card className={`${classes.background} ${classes.root} ${classes.post}`} key={post.id}>
                         <CardContent>
                           <Typography className={classes.postTitle} color="textPrimary" gutterBottom backgroundColor="#FFFFFF">
-                            <h1>{post.title}</h1>
-                          </Typography>
-                          <Typography variant="h5" component="h2">
-                            be{bull}nev{bull}o{bull}lent
+                            <h1>{post.title || 'put in title'}</h1>
                           </Typography>
                           <Typography className={classes.pos} color="textSecondary">
                             {post.caption}
                           </Typography>
                           <Typography variant="body2" component="p">
                             {post.category}
-                            <br />
-                            {}
                           </Typography>
                         </CardContent>
                       </Card>
-                      <br></br>
-                      </div>
                     );
                 })
             }
