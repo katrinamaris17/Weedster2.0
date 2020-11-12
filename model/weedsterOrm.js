@@ -5,6 +5,14 @@
 // Creating a post by a specific user: Should return the post that was just created
 // Creating a comment for a post by a specific user: Should return the comment that was just created
 
+// !!!!! I think we need to work on this before going forward!!!!!!!!! 
+
+// { post: 'i got my steel an ya know it gets sparked a lot\n' }
+//[0] (node:7356) UnhandledPromiseRejectionWarning: Error: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '?, ?, ?)' at line 1        
+//[0]     at insertCommentToDb (C:\Users\augie\OneDrive\desktop\bootcamp\project2\Project02\model\weedsterOrm.js:87:11)
+//[0]     at processTicksAndRejections (internal/process/task_queues.js:97:5)
+//[0] (node:7356) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). To terminate the node process on unhandled promise rejection, use the CLI flag `--unhandled-rejections=strict` (see https://nodejs.org/api/cli.html#cli_unhandled_rejections_mode). (rejection id: 2)
+
 const {
   insertPostQuery,
   getPostByIdQuery,
@@ -65,13 +73,13 @@ const getAllPostsAndComments = async (userId) => {
   }
 };
 
-const insertPost = async (post, userId) => {
+const insertPost = async (title, category, caption, userId) => {
   try {
     const [result] = await connection.query(insertPostQuery, [
-      "title1",
-      "edibles",
-      post,
-      1,
+      title, 
+      category, 
+      caption, 
+      userId,
     ]);
     return await findPostByIdFromDb(result.insertId);
   } catch (e) {
