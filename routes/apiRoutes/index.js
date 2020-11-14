@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { postApi, getPosts } = require('../../controllers/postController');
+const { postApi, getPosts, insertCommentApi } = require('../../controllers/postController');
 
 const { feedApi } = require('../../controllers/feedController');
 
@@ -9,6 +9,7 @@ router.post('/category', categoryApi);
 router.post('/post', postApi);
 router.get('/post', getPosts);
 router.get('/feed', feedApi);
+router.post('/comment', insertCommentApi);
 // Setup your routes for /api/something here
 // This line of code makes it so that /api/fweets is prepended to fweetRoutes
 // example route.use('/myRoute', myRoutes);
