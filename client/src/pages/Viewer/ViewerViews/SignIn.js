@@ -3,6 +3,7 @@ import { reduxForm, Field } from 'redux-form';
 import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
 import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
 
 import { setViewerToken } from '../ViewerReducer';
 // The Field components job is to render out input html
@@ -20,14 +21,25 @@ import { setViewerToken } from '../ViewerReducer';
 //     // label={label}
 //   />;
 // };
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& .MuiTextField-root': {
+      margin: theme.spacing(1),
+      width: '30ch',
+    },
+  },
+}));
 
 const TextFieldInput = ({ input, meta, label }) => {
   // console.log('FIELD COMPONENT PROPS', props);
   return <TextField
     {...input}
+    id="outlined-helperText"
     label={label}
+    variant="outlined"
   />;
 };
+
 
 // What Redux form does for us
 // It will write the functions for updating form state
@@ -40,6 +52,7 @@ const TextFieldInput = ({ input, meta, label }) => {
 // to the function that it's calling
 const SignIn = (props) => {
   const { handleSubmit, history } = props;
+  const classes = useStyles();
 
   console.log(props);
   const handleSignIn = async (formValues, dispatch) => {
@@ -52,11 +65,11 @@ const SignIn = (props) => {
       history.push('/feature');
     } catch (e) {
       throw new Error(e);
-    }
+    } 
   }
 
   return (
-    <form noValidate autoComplete="off">
+    <form className={classes.root} noValidate autoComplete="off">
       <Field
         name='username'
         label='username'
@@ -69,6 +82,7 @@ const SignIn = (props) => {
       />
       <Button
         onClick={ handleSubmit(handleSignIn) }
+        fullWidth
         variant="contained"
         color="primary">
         Sign in

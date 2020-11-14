@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button';
 
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import { makeStyles } from '@material-ui/core/styles';
 import { setViewerToken } from '../ViewerReducer';
 // The Field components job is to render out input html
 // and pass down functions for updating the state
@@ -23,11 +24,22 @@ import { setViewerToken } from '../ViewerReducer';
 //   />;
 // };
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& .MuiTextField-root': {
+      margin: theme.spacing(1),
+      width: '30ch',
+    },
+  },
+}));
+
 const TextFieldInput = ({ input, meta, label }) => {
   // console.log('FIELD COMPONENT PROPS', props);
   return <TextField
     {...input}
+    id="outlined-helperText"
     label={label}
+    variant="outlined"
   />;
 };
 
@@ -74,6 +86,7 @@ class SignUp extends Component {
         />
         <Button
           onClick={ handleSubmit(this.handleSignUp) }
+          fullWidth
           variant="contained"
           color="primary">
           Sign up

@@ -4,7 +4,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import Container from '@material-ui/core/Container';
+import Card from '@material-ui/core/Card';
+import CardMedia from '@material-ui/core/CardMedia';
 import { WrappedSignIn, WrappedSignUp } from '../Viewer';
 import {useHistory } from 'react-router-dom';
 
@@ -25,12 +26,6 @@ import {useHistory } from 'react-router-dom';
 //   );
 // }
 
-function Logo() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center" img src="">
-    </Typography>
-  );
-}
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -41,9 +36,8 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     color: theme.palette.text.secondary,
   },
- logo: {
-    margin: theme.spacing(1),
-    backgroundImage: "url('./client/public/weedleaf_24.png')"
+  media: {
+    height: 140,
   },
 }));
 
@@ -59,10 +53,9 @@ export default function FullWidthGrid() {
     direction="column"
     alignItems="center"
     justify="center"
-    style={{ minHeight: '100vh' }}
+    style={{ minHeight: '200vh' }}
   >
-  <Grid item xs={4}>
-  <logo className={classes.logo}></logo>
+  <Grid item xs={6}>
   <Paper className={classes.paper}>
     <WrappedSignIn history={history}></WrappedSignIn>
     <WrappedSignUp history={history}></WrappedSignUp>
