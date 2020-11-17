@@ -43,7 +43,7 @@ export default function FullWidthGrid() {
     direction="column"
     alignItems="center"
     justify="center"
-    style={{ minHeight: '200vh' }}
+    style={{ minHeight: '80vh' }}
   >
   <Grid item xs={6}>
   <CardActionArea>
