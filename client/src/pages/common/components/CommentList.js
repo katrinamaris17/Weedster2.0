@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import AddComment from './AddComment'
+import CommentList from './CommentList';
+
 export default function CommentList (props) {
     console.log(props)
     const [comments, setComments] = useState([]);
