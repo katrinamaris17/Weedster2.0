@@ -7,6 +7,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import CardActions from "@material-ui/core/CardActions";
 import Button from "@material-ui/core/Button";
 import AddComment from "./AddComment";
+import Likes from './Likes';
 
 const useStyles = makeStyles({
   root: {
@@ -132,6 +133,7 @@ export default function () {
                 </CardActions> */}
               <AddComment postId={post.id} userId={post.userId} />
             </CardContent>
+            <Likes/>
           </Card>
         );
       })}
