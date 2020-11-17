@@ -4,38 +4,30 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
 import { WrappedSignIn, WrappedSignUp } from '../Viewer';
 import {useHistory } from 'react-router-dom';
-
-
-// export default function SimpleContainer() {
-//   const history = useHistory();
-//   return (
-//     <React.Fragment>
-//       <CssBaseline />
-//       <Container maxWidth="md">
-//         <Typography component="div" style={{ backgroundColor: '#cfe8fc', height: '100vh' }}>
-//         <WrappedSignIn history={history}></WrappedSignIn>
-//         <WrappedSignUp history={history}></WrappedSignUp>
-//         </Typography> 
-
-//       </Container>
-//     </React.Fragment>
-//   );
-// }
 
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
+
   paper: {
     padding: theme.spacing(2),
     textAlign: 'center',
     color: theme.palette.text.secondary,
   },
   media: {
-    height: 140,
+    height: 200,
+    backgroundImage: "url('/logo192.png')",
+    backgroundSize: "30%",
+    backgroundColor: "white",
   },
 }));
 
@@ -54,6 +46,16 @@ export default function FullWidthGrid() {
     style={{ minHeight: '200vh' }}
   >
   <Grid item xs={6}>
+  <CardActionArea>
+        <CardMedia
+          className={classes.media}
+        />
+        <CardContent>
+        <Typography gutterBottom variant="h2" component="h3">
+            Welcome to Weedster!
+        </Typography>
+        </CardContent>
+  </CardActionArea>
   <Paper className={classes.paper}>
     <WrappedSignIn history={history}></WrappedSignIn>
     <br></br>
@@ -61,14 +63,6 @@ export default function FullWidthGrid() {
     </Paper>
   </Grid>   
 </Grid>
-      {/* <Grid container spacing={6}>
-        <Grid item md={4}>
-          <Paper className={classes.paper}>
-          <WrappedSignIn history={history}></WrappedSignIn>
-          <WrappedSignUp history={history}></WrappedSignUp>
-          </Paper>
-        </Grid>
-      </Grid> */}
     </div>
   );
 }
