@@ -4,7 +4,7 @@ class Likes extends Component {
     state = {
         likes: 0
     }
-  handleLike(event, value) {
+  handleLike(value) {
     this.setState({likes: value + 1});
   }
   render() {
