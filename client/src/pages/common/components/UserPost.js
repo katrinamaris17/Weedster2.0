@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
-import CardActions from "@material-ui/core/CardActions";
-import Button from "@material-ui/core/Button";
-import AddComment from "./AddComment";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios'
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import CardActions from '@material-ui/core/CardActions';
+import Button from '@material-ui/core/Button';
+import AddComment from './AddComment';
+import CommentList from './CommentList';
 import Likes from './Likes';
 
 const useStyles = makeStyles({
@@ -131,12 +132,10 @@ export default function () {
                     Comment
                   </Button>
                 </CardActions> */}
-              <AddComment postId={post.id} userId={post.userId} />
-            </CardContent>
-            <Likes/>
-          </Card>
-        );
-      })}
+                <CommentList postId ={post.id} userId = {post.userId}/>
+              </CardContent>
+              <Likes/>
+            </Card>
     </>
   );
 }

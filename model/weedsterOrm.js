@@ -25,6 +25,7 @@ const {
   insertCommentQuery,
   deletePostQuery,
   deleteCommentQuery,
+  getCommentsByPostIdQuery,
 } = require("./weedsterQueries");
 
 const connection = require("../config/connection");
@@ -96,7 +97,14 @@ const insertCommentToDb = async (message, postId, userId) => {
     throw new Error(e);
   }
 };
-
+const getCommentsByPostIdFromDb = async (postId) => {
+  try {
+    const [result]= await connection.query(getCommentsByPostIdQuery, postId);
+    return result
+  } catch (e) {
+    throw new Error(e);
+  }
+}
 const findPostByIdFromDb = async (postId) => {
   try {
     const [result] = await connection.query(getPostByIdQuery, postId);
@@ -134,4 +142,5 @@ module.exports = {
   findPostByIdFromDb,
   deleteComment,
   deletePost,
+  getCommentsByPostIdFromDb,
 };

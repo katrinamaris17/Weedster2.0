@@ -15,6 +15,8 @@ export default function AddComment (props) {
             "userId": props.userId,
         }); 
         console.log(res.data)
+        props.onAddComment(res.data)
+        setComment("")
     } 
     return (
         <div>

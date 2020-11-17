@@ -38,7 +38,7 @@ export default function SimpleContainer() {
     history.push("/")
   }
   return (
-    <html className={classes.body}>
+    <html className= {classes.body}>
     {/* <React.Fragment> */}
       <Navbar/>
       <CssBaseline />

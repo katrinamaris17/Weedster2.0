@@ -1,4 +1,4 @@
-const { insertPost, insertCommentToDb, findAllPostsFromDb } = require('../model/weedsterOrm');
+const { insertPost, insertCommentToDb, findAllPostsFromDb, getCommentsByPostIdFromDb } = require('../model/weedsterOrm');
 
 const postApi = async (req, res) => {
   console.log(req.body);
@@ -12,6 +12,14 @@ const insertCommentApi = async (req, res) => {
   const result = await insertCommentToDb(message, postId, userId)
   res.json(result);
 };
+const getCommentsApi = async (req, res) => {
+  console.log ("inside get comments api", req.query);
+  // const postId = req.body.postId
+  const {postId}=req.query 
+  const result = await getCommentsByPostIdFromDb (postId)
+  res.json(result)
+}
+
 const getPosts = async (req, res) => {
   const result = await findAllPostsFromDb()
   res.json(result);
@@ -21,4 +29,5 @@ module.exports = {
   postApi,
   getPosts,
   insertCommentApi, 
+  getCommentsApi,
 };
