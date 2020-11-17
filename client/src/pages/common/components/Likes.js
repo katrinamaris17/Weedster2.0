@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
-
 class Likes extends Component {
     state = {
         likes: 0
     }
   handleLike(value) {
-    this.setState({likes: value + 1});
+    this.setState({likes: value});
   }
   render() {
     return (
