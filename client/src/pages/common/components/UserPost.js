@@ -95,11 +95,11 @@ export default function () {
       <h2></h2>
       <input type="text" onChange={changeTitleHandler} value={title} />
       <select onChange={changeCategoryHandler} value={category}>
+        <option value="SELECT">SELECT Category...</option>
         <option value="Homegrowing">Homegrowing</option>
         <option value="Recipes">Recipes</option>
         <option value="Questions">Questions</option>
       </select>
-
       <textarea rows="5" cols="100" onChange={changeHandler} value={post} />
       <br />
 
