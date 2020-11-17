@@ -21,6 +21,7 @@ const {
   getAllUserPostsQuery,
   getAllPostsAndCommentsQuery,
   getSinglePostandCommentsQuery,
+  getCommentByIdQuery,
   insertCommentQuery,
   deletePostQuery,
   deleteCommentQuery,
@@ -89,7 +90,7 @@ const insertPost = async (title, category, caption, userId) => {
 
 const insertCommentToDb = async (message, postId, userId) => {
   try {
-    const [result] = await connection.query(insertCommentQuery, message, postId, userId);
+    const [result] = await connection.query(insertCommentQuery, [message, postId, userId]);
     return await findCommentByIdFromDb(result.insertId);
   } catch (e) {
     throw new Error(e);
