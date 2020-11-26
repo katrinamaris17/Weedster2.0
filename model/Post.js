@@ -13,12 +13,10 @@ const PostSchema = new Schema(
       maxlength: 1000,
       required: true,
     },
-    author: [
-      {
+    author: {
         type: Schema.Types.ObjectId,
         ref: "User",
       },
-    ],
     comments: [
       {
         owner: { 
@@ -37,6 +35,8 @@ const PostSchema = new Schema(
     timestamps: true,
   }
 );
+
+
 
 const Post = model("Post", PostSchema);
 
