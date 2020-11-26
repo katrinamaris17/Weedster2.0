@@ -1,11 +1,6 @@
 const { Schema, model } = require("mongoose");
 const PostSchema = new Schema(
   {
-    title: {
-      type: String,
-      required: [false, "Username is required"],
-      trim: true,
-    },
     category: {
       type: String,
       required: true,
@@ -18,17 +13,21 @@ const PostSchema = new Schema(
       maxlength: 1000,
       required: true,
     },
-    username: [
-      {
+    author: {
         type: Schema.Types.ObjectId,
         ref: "User",
       },
-    ],
     comments: [
       {
-        type: String,
-        maxlength: 600,
-        owner: { type: Schema.Types.ObjectId, ref: "User" },
+        owner: { 
+          type: Schema.Types.ObjectId, 
+          ref: "User" 
+        },
+        message: {
+          type: String,
+          maxlength: 1000,
+          required: true,
+        },
       },
     ],
   },
@@ -36,6 +35,8 @@ const PostSchema = new Schema(
     timestamps: true,
   }
 );
+
+
 
 const Post = model("Post", PostSchema);
 
