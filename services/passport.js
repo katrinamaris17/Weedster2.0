@@ -3,7 +3,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
 
-const { comparePassword, fetchUserByUsernameFromDb, fetchUserByIdFromDb } = require('../model/userOrm');
+const { User } = require('../model');
 // Done is similar
 // takes 2 parameters
 // the 1st is an error or an error object
@@ -14,7 +14,8 @@ const localStrategy = new LocalStrategy(async (username, password, done) => {
   //   call done like this done(err, null);
   let user;
   try {
-    user = await fetchUserByUsernameFromDb(username);
+    user = await User.findOneByUsername(username);
+    // user = await fetchUserByUsernameFromDb(username);
   } catch (e) {
     return done(e, null);
   }
@@ -23,7 +24,7 @@ const localStrategy = new LocalStrategy(async (username, password, done) => {
 //   What passport will do if we pass a user as the 2nd param to done
 //   on the next request that the middleware applied
   if (user) {
-    const doesPasswordMatch = await comparePassword(password, user.password);
+    const doesPasswordMatch = await user.comparePassword(password);
     if (doesPasswordMatch) {
       console.log(doesPasswordMatch);
       return done(null, user);
@@ -48,7 +49,8 @@ const jwtStrategy = new JwtStrategy(jwtOptions, async (jwtToken, done) => {
   let user;
 
   try {
-    user = await fetchUserByIdFromDb(jwtToken.sub);
+    user = await User.findById(jwtToken.sub);
+    // user = await fetchUserByIdFromDb(jwtToken.sub);
   } catch (e) {
     return done(e, null);
   }
