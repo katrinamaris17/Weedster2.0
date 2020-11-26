@@ -11,11 +11,11 @@ const tokenForUser = (id) => {
 
 
 module.exports = {
-  signIn: (req, res) => {
+  signInApi: (req, res) => {
     console.log('I AM THE LOGGED IN USER', req.user);
     res.json(tokenForUser(req.user._id));
   },
-  signUp: async (req, res) => {
+  signUpApi: async (req, res) => {
     const { username, password } = req.body;
     console.log(req.body);
     try {
@@ -28,7 +28,7 @@ module.exports = {
         .json(e);
     }
   },
-  signOut: (req, res) => {
+  signOutApi: (req, res) => {
     req.logOut();
     res.json({ success: 'You are now logged out' });
   },
