@@ -13,6 +13,7 @@ mongoose.connect(process.env.MONGODB_URI, {
     .catch(e => console.log(e));
 
 mongoose.set('debug', true);
+// mongoose.set('returnOriginal', false);
 
 const PORT = process.env.PORT || 3001;
 
