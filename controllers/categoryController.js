@@ -1,4 +1,4 @@
-const { insertCategory, insertCommentToDb } = require('../model/weedsterOrm');
+const { insertCommentToDb } = require('../model/weedsterOrm');
 
 const categoryApi = async (req, res) => {
   console.log(req.body);

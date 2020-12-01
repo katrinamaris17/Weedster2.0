@@ -26,9 +26,8 @@ const PostSchema = new Schema(
         message: {
           type: String,
           maxlength: 1000,
-          required: true,
         },
-      },
+      }
     ],
   },
   {
