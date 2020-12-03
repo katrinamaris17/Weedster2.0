@@ -1,0 +1,1 @@
+// List the posts > map the post component

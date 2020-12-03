@@ -1,10 +1,10 @@
 import React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
+// import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import {useSelector} from 'react-redux';
 import Navbar from '../../pages/common/components/Navbar';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import UserPost from '../../pages/common/components/UserPost';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -38,7 +38,7 @@ export default function SimpleContainer() {
     history.push("/")
   }
   return (
-    <html className= {classes.body}>
+    <div className= {classes.body}>
     {/* <React.Fragment> */}
       <Navbar/>
       <CssBaseline />
@@ -47,7 +47,7 @@ export default function SimpleContainer() {
         {/* <Typography component="div" style={{ backgroundColor: '#cfe8fc', height: '100vh' }} /> */}
       </Container>
     {/* </React.Fragment> */}
-    </html>
+    </div>
   );
 
   

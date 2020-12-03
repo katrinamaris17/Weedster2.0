@@ -20,7 +20,7 @@ const logger = createLogger({
 
 const store = configureStore({
   reducer: rootReducer,
-  middleware: [logger],
+  // middleware: [logger],
 });
 
 ReactDOM.render(

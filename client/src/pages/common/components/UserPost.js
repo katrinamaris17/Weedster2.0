@@ -4,11 +4,12 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import CardActions from "@material-ui/core/CardActions";
-import Button from "@material-ui/core/Button";
-import AddComment from "./AddComment";
+// import CardActions from "@material-ui/core/CardActions";
+// import Button from "@material-ui/core/Button";
+// import AddComment from "./AddComment";
 import CommentList from "./CommentList";
 import Likes from "./Likes";
+import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles({
   root: {
@@ -42,58 +43,56 @@ const useStyles = makeStyles({
 });
 
 export default function () {
+  const viewer = useSelector( (state) => { return state.viewer})
   const [post, setPost] = useState("");
-  const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
   const [posts, setPosts] = useState([]);
   const classes = useStyles();
-  const bull = <span className={classes.bullet}>•</span>;
+  // const bull = <span className={classes.bullet}>•</span>;
 
   useEffect(() => {
-    axios.get("/api/post").then((res) => {
-      console.log(res.data);
+    axios.get("/api/post", { headers: {
+      authorization: viewer.token
+    }}).then((res) => {
+      console.log('this is useEffect res.data', res.data);
       setPosts(res.data);
     });
   }, []);
 
   const changeHandler = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     setPost(e.target.value);
   };
 
-  const changeTitleHandler = (e) => {
-    console.log(e.target.value);
-    setTitle(e.target.value);
-  };
-
   const changeCategoryHandler = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     setCategory(e.target.value);
   };
 
   const clickHandler = async () => {
-    if (post === "" || title === "") {
+    if (post === "") {
       alert("needs content");
       return;
     }
+    console.log('this is the viewer', viewer);
     const res = await axios.post("/api/post", {
-      title: title,
       caption: post,
       category: category,
-      userId: 1,
+    }, {
+      headers: {
+        authorization: viewer.token
+      }
     });
-    console.log(res.data);
+    console.log('this res.data ', res.data);
     const newPostsState = [res.data, ...posts];
     setPosts(newPostsState);
     setPost("");
-    setTitle("");
     setCategory("");
   };
 
   return (
     <>
-      <h2></h2>
-      <input type="text" onChange={changeTitleHandler} value={title} />
+      <h2>Make a Post</h2>
       <select onChange={changeCategoryHandler} value={category}>
         <option value="SELECT">SELECT Category...</option>
         <option value="Homegrowing">Homegrowing</option>
@@ -111,17 +110,9 @@ export default function () {
         return (
           <Card
             className={`${classes.background} ${classes.root} ${classes.post}`}
-            key={post.id}
+            key={post._id}
           >
             <CardContent>
-              <Typography
-                className={classes.postTitle}
-                color="textPrimary"
-                gutterBottom
-                backgroundColor="#FFFFFF"
-              >
-                <h1>{post.title || "put in title"}</h1>
-              </Typography>
               <Typography className={classes.pos} color="textSecondary">
                 {post.caption}
               </Typography>
@@ -133,7 +124,7 @@ export default function () {
                     Comment
                   </Button>
                 </CardActions> */}
-              <CommentList postId={post.id} userId={post.userId} />
+              <CommentList postId={post._id} userId={post.author} comments={post.comments} />
             </CardContent>
             <Likes />
           </Card>

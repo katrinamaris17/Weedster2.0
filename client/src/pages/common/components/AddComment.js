@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios'
+import { useSelector } from 'react-redux'
 
 export default function AddComment (props) {
-    // console.log(props)
+    const viewer = useSelector( (state) => { return state.viewer})
     const [comment, setComment] = useState("");
     const handleChange = (event) => {
         setComment(event.target.value)
@@ -12,18 +13,19 @@ export default function AddComment (props) {
         const res = await axios.post('/api/comment', {
             "message": comment,
             "postId": props.postId,
-            "userId": props.userId,
+        }, {
+            headers: {
+              authorization: viewer.token
+            }
         }); 
         console.log(res.data)
-        props.onAddComment(res.data)
+        // props.onAddComment(res.data)
         setComment("")
     } 
     return (
         <div>
             <form>
-                <textarea rows = "3" cols = "50" onChange = {handleChange}>
-                    {comment}
-                </textarea>
+                <textarea rows = "3" cols = "50" onChange = {handleChange} value={comment}/>
                 <button onClick = {handleSubmit}>Submit</button>
             </form>
         </div>

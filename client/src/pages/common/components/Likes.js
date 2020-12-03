@@ -19,7 +19,7 @@ class Counter extends Component {
     }));
   };
   render() {
-    return <button onClick={this.handleClick}><span class="fas fa-thumbs-up"></span>{this.state.count}</button>;
+    return <button onClick={this.handleClick}><span className="fas fa-thumbs-up"></span>{this.state.count}</button>;
   }
 }
 

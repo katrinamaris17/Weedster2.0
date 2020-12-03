@@ -6,8 +6,8 @@ import Button from '@material-ui/core/Button';
 import { Link, useHistory } from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
 import {setViewerToken} from '../../Viewer';
-import { blue } from '@material-ui/core/colors';
-import { createMuiTheme } from '@material-ui/core/styles';
+// import { blue } from '@material-ui/core/colors';
+// import { createMuiTheme } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {
