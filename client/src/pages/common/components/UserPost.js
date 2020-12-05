@@ -9,7 +9,7 @@ import { makeStyles } from "@material-ui/core/styles";
 // import AddComment from "./AddComment";
 import CommentList from "./CommentList";
 import Likes from "./Likes";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import {fetchPosts} from "../../Posts/postsSlice" 
 
 const useStyles = makeStyles({
@@ -44,6 +44,7 @@ const useStyles = makeStyles({
 });
 
 export default function () {
+  const dispatch = useDispatch()
   const viewer = useSelector( (state) => { return state.viewer})
   const [post, setPost] = useState("");
   const [category, setCategory] = useState("");
@@ -52,7 +53,7 @@ export default function () {
   // const bull = <span className={classes.bullet}>•</span>;
 
   useEffect(() => {
-    fetchPosts(viewer.token)
+    dispatch(fetchPosts(viewer.token))
     axios.get("/api/post", { headers: {
       authorization: viewer.token
     }}).then((res) => {

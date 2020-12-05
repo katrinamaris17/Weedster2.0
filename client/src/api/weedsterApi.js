@@ -6,5 +6,5 @@ export async function getPosts(token) {
       authorization: token,
     },
   });
-  return result.data
+  return {posts: result.data}
 }

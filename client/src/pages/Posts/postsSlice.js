@@ -1,5 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {getPosts as getPostsApi} from "../../api/weedsterApi";
+import {getPosts} from "../../api/weedsterApi";
 
 const initialState = {
     posts: [],
@@ -11,30 +11,36 @@ const posts = createSlice({
     name: 'posts',
     initialState: initialState,
     reducers: {
-        getPosts(state, action) {
-            return {
-                ...state,
-                posts: ["test"],
-            };
+        getPostsSuccess(state, action) {
+          console.log("action", action)
+          state.posts = action.payload.posts
+          state.isLoading=false
+          state.error=null
+        },
+        getPostsStart (state, action) {
+          state.isLoading=true
+        },
+        getPostsFailure (state, action) {
+          state.isLoading=false
+          state.error=action.payload
         },
     },
 });
 
 export const {
-    getPosts,
+    getPostsStart,
+    getPostsSuccess,
+    getPostsFailure,
 } = posts.actions;
 
 export default posts.reducer;
-export const fetchPosts = (token) => { 
-  console.log("inside fetch post")
-  return async (dispatch) => {
-    console.log("token from slice", token)
-    
+
+export const fetchPosts = (token) => async (dispatch) => {
     try {
-      const posts = await getPostsApi (token)
-      dispatch (getPosts(posts))
+      dispatch(getPostsStart())
+      const posts = await getPosts(token)
+      dispatch(getPostsSuccess(posts))
     } catch (error) {
-      console.log("error", error)
+      dispatch(getPostsFailure(error.toString()))
     } 
-  }
 }
