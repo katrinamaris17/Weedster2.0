@@ -1,4 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
+import {getPosts as getPostsApi} from "../../api/weedsterApi";
 
 const initialState = {
     posts: [],
@@ -13,7 +14,7 @@ const posts = createSlice({
         getPosts(state, action) {
             return {
                 ...state,
-                posts: action.payload,
+                posts: ["test"],
             };
         },
     },
@@ -24,3 +25,16 @@ export const {
 } = posts.actions;
 
 export default posts.reducer;
+export const fetchPosts = (token) => { 
+  console.log("inside fetch post")
+  return async (dispatch) => {
+    console.log("token from slice", token)
+    
+    try {
+      const posts = await getPostsApi (token)
+      dispatch (getPosts(posts))
+    } catch (error) {
+      console.log("error", error)
+    } 
+  }
+}

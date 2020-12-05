@@ -10,6 +10,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import CommentList from "./CommentList";
 import Likes from "./Likes";
 import { useSelector } from 'react-redux';
+import {fetchPosts} from "../../Posts/postsSlice" 
 
 const useStyles = makeStyles({
   root: {
@@ -51,6 +52,7 @@ export default function () {
   // const bull = <span className={classes.bullet}>•</span>;
 
   useEffect(() => {
+    fetchPosts(viewer.token)
     axios.get("/api/post", { headers: {
       authorization: viewer.token
     }}).then((res) => {
