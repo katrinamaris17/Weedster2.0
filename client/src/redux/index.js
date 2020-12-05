@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
+import postReducer from '../pages/Posts/postsSlice';
 import {
   // userReducer,
   viewerReducer,
@@ -10,4 +11,5 @@ import {
 export default combineReducers({
   form: formReducer,
   viewer: viewerReducer,
+  posts: postReducer,
 });

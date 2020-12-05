@@ -55,6 +55,9 @@ export default function () {
       authorization: viewer.token
     }}).then((res) => {
       console.log('this is useEffect res.data', res.data);
+      // sort res.data then set post to sorted array
+      let sortedArray = res.data.sort( function ( a, b ) { return a - b; } );
+      console.log(sortedArray);
       setPosts(res.data);
     });
   }, []);
