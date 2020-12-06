@@ -74,6 +74,7 @@ class SignUp extends Component {
         />
         <Button
           onClick={ handleSubmit(this.handleSignUp) }
+          fullWidth
           variant="contained"
           color="primary">
           Sign up

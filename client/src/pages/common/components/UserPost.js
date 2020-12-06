@@ -63,7 +63,7 @@ export default function () {
       console.log(sortedArray);
       setPosts(res.data);
     });
-  }, []);
+  }, [dispatch, viewer.token]);
 
   const changeHandler = (e) => {
     // console.log(e.target.value);

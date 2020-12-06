@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
+import PostsListItem from "./PostsListItem";
 
 export default function (props){
   const {posts}=props;
@@ -6,9 +7,7 @@ export default function (props){
     <ul>
       {posts.map((post) => (
         <li key={post._id}>
-          <p>
-            {post.caption}
-          </p>
+          <PostsListItem post={post}/>
         </li>
       ))}
     </ul>

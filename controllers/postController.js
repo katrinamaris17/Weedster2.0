@@ -38,8 +38,8 @@ const createComment = async (req, res) => {
   const commentId = mongoDb.ObjectId()
   console.log(commentId);
   const result = await db.Post.findByIdAndUpdate(postId, { $push: { comments: { _id: commentId, message, owner: req.user._id} } }, options)
-  await db.User.findByIdAndUpdate(req.user._id, { $push: { comments: commentId }});
-  res.json(result);
+  const post = await db.Post.findById(postId);
+  res.json(post);
 }
 
 module.exports = {
