@@ -4,9 +4,9 @@ const mongoDb = require('mongodb')
 const createPost = async (req, res) => {
   const {category, caption}=req.body
   const result = await db.Post.create({ category, caption, author: req.user._id })
-  console.log(result);
   await db.User.findByIdAndUpdate(req.user._id, { $push: { posts: result._id }})
-  res.json(result);
+  const postResult = await db.Post.findById(result._id).populate('author', 'username')
+  res.json(postResult);
 };
 
 // const getPost = async (req, res) => {
@@ -19,7 +19,10 @@ const createPost = async (req, res) => {
 const getAllPosts = async (req, res) => {
   console.log(req.body);
   const { _id } = req.body
-  const result = await db.Post.find({})
+  const result = await db.Post.find({}).populate('author', 'username').populate({
+    path: 'comments',
+    populate: { path: 'owner', select:'username' }
+  });
   res.json(result);
 }
 
@@ -38,7 +41,10 @@ const createComment = async (req, res) => {
   const commentId = mongoDb.ObjectId()
   console.log(commentId);
   const result = await db.Post.findByIdAndUpdate(postId, { $push: { comments: { _id: commentId, message, owner: req.user._id} } }, options)
-  const post = await db.Post.findById(postId);
+  const post = await db.Post.findById(postId).populate('author', 'username').populate({
+    path: 'comments',
+    populate: { path: 'owner', select:'username' }
+  });
   res.json(post);
 }
 

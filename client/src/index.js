@@ -2,6 +2,9 @@ import React from 'react';
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom';
+import TimeAgo from 'javascript-time-ago'
+import en from 'javascript-time-ago/locale/en'
+
 // import { createLogger } from 'redux-logger';
 
 import App from './App';
@@ -22,7 +25,7 @@ const store = configureStore({
   reducer: rootReducer,
   // middleware: [logger],
 });
-
+TimeAgo.addDefaultLocale(en)
 ReactDOM.render(
   <Provider store={store}>
     <App/>

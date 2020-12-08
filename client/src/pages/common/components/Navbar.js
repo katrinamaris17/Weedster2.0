@@ -46,7 +46,7 @@ export default function ButtonAppBar() {
             component={Link}
             to='/'
             color="inherit">
-            About
+            Username
           </Button>
           <Button
             component={Link}

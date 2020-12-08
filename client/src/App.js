@@ -2,7 +2,7 @@ import React from 'react';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 // import Navbar from './pages/common/components/Navbar';
 import Homepage from './pages/Homepage';
-import Feature from './pages/Feature';
+// import Feature from './pages/Feature';
 import PostsListPage from "./pages/Posts/PostsListPage"
 import {
   WrappedSignUp,
@@ -16,8 +16,8 @@ function App() {
       <Route path='/signup' component={WrappedSignUp}/>
       <Route path='/signin' component={WrappedSignIn}/>
       {/* <Route path='/homepage' component={Homepage}/> */}
-      <Route path='/feature' component={Feature}/>
       <Route path='/posts' component={PostsListPage}/>
+      {/* <Route path='/posts' component={PostsListPage}/> */}
       <Route exact path="/" component={Homepage}/>
     </Router>
   );

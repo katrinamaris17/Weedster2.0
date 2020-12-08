@@ -1,10 +1,14 @@
 import React from "react";
+import ReactTimeAgo from 'react-time-ago'
 
-export default function (props){
-  const {comment}=props;
+export default function (props) {
+  const { comment } = props;
   return (
-    <p>
-        {comment.message}
-    </p>
-  )
+    <div>
+      {comment.message}
+      <div>owner: {comment.owner.username}</div>
+      <div>time: <ReactTimeAgo date={comment.created_at} locale="en-US"/></div>
+
+    </div>
+  );
 }

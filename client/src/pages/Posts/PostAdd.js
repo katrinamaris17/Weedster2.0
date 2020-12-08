@@ -23,6 +23,8 @@ export default function (props){
         e.preventDefault()
         dispatch(setPostUI({
             _id:"fakeID",
+            author: {username: 'fakeUser'},
+            createdAt: new Date(),
             caption: values.caption,
             category: values.category,
             comments: [],
