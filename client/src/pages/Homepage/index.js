@@ -48,7 +48,7 @@ export default function FullWidthGrid() {
           <CardActionArea>
             {/* <CardMedia className={classes.media} /> */}
             <CardContent>
-              <Typography gutterBottom variant="h2" component="h3">
+              <Typography gutterBottom variant="h2" component="h3" className={classes.paper}>
                 Welcome to Weedster!
               </Typography>
             </CardContent>
