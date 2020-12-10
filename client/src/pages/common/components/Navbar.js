@@ -48,12 +48,12 @@ export default function ButtonAppBar() {
             color="inherit">
             Username
           </Button>
-          <Button
+          {/* <Button
             component={Link}
             to='/Feature'
             color="inherit">
             Feature
-          </Button>
+          </Button> */}
           {
             token ?
               <Button

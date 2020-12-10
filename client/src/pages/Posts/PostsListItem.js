@@ -14,6 +14,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Likes from './Likes';
 
+
 const useStyles = makeStyles({
   root: {
     maxWidth: 750,
@@ -55,6 +56,7 @@ return (
         title="Contemplative Reptile"
       />
       <CardContent>
+        {post.category}
         <Typography gutterBottom variant="h5" component="h2">
         {post.caption}
         </Typography>
@@ -71,5 +73,5 @@ return (
       </CardContent>
     </CardActionArea>
   </Card>
-);
+ );
 }
