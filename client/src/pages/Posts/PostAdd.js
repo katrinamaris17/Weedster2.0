@@ -36,6 +36,7 @@ export default function (props){
         })
         dispatch(savePost(token, values.category, values.caption))
     }
+
   return (
     <form>
         <select name="category" onChange={handleInputChange} value={values.category}>

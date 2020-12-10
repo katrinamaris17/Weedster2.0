@@ -18,20 +18,20 @@ const posts = createSlice({
           state.isLoading=false
           state.error=null
         },
-        getPostsStart (state, action) {
+        getPostsStart(state, action) {
           state.isLoading=true
         },
-        getPostsFailure (state, action) {
+        getPostsFailure(state, action) {
           state.isLoading=false
           state.error=action.payload
         },
-        setPostUI (state, action) {
+        setPostUI(state, action) {
             state.posts.push(action.payload)
         },
-        setPostStart (state, action) {
+        setPostStart(state, action) {
             state.isSaving=true
         },
-        setPostFailure (state, action) {
+        setPostFailure(state, action) {
             state.isSaving=false
             state.error=action.payload
         },
@@ -48,10 +48,13 @@ const posts = createSlice({
             state.isSaving=false
             state.error=null
         },
-        setCommentStart (state, action) {
+        deletePostUI(state, action) {
+            state.posts.pop(action.payload)
+        },
+        setCommentStart(state, action) {
             state.isSaving=true
         }, 
-        setCommentFailure (state, action) {
+        setCommentFailure(state, action) {
             state.isSaving=false
             state.error=action.payload
         },
@@ -79,6 +82,7 @@ export const {
     setPostStart,
     setPostFailure,
     setPostSuccess,
+    deletePostUI,
     setCommentStart,
     setCommentFailure,
     setCommentSuccess,
@@ -107,7 +111,6 @@ export const savePost = (token, category, caption) => async (dispatch) => {
         dispatch(setPostFailure(error.toString()))
     }
 }
-
 
 export const saveComment = (token, postId, message) => async (dispatch) => {
     try {
