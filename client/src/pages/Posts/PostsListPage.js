@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import PostsList from "./PostsList"
 import PostAdd from "./PostAdd"
 import {fetchPosts} from "./postsSlice"
+import { useHistory } from "react-router-dom";
 
 export default function () {
   const dispatch = useDispatch()

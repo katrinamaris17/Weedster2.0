@@ -8,7 +8,7 @@ export default function (props) {
       {comment.message}
       <div>owner: {comment.owner.username}</div>
       <div>time: <ReactTimeAgo date={comment.created_at} locale="en-US"/></div>
-
+      <button>DELETE COMMENT</button>
     </div>
   );
 }
