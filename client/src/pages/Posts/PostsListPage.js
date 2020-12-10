@@ -16,7 +16,6 @@ const useStyles = makeStyles({
     backgroundAttachment: 'fixed',
     backgroundPosition: 'center',
     backgroundColor: 'lightgreen',
-    height: '100vh',
   },
 center: {
   margin: 'auto',
