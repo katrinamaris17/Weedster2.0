@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { useSelector, useDispatch } from 'react-redux';
 import { setPostUI, savePost } from "./postsSlice"
+import ImageUpload from "./ImageUpload"
 
 const initialValues = {
     category: "", 
@@ -47,11 +48,10 @@ export default function (props){
         </select>
         <textarea name="caption" rows="5" cols="100" onChange={handleInputChange} value={values.caption} />
         <br />
-
+        <ImageUpload />
         <button onClick={clickHandler}>
             Submit
         </button>
-
     </form>
   )
 }
