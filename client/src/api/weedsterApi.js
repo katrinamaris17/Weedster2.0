@@ -21,6 +21,16 @@ export async function setPost(token, category, caption) {
   return {post: result.data}
 }
 
+export async function deletePost (token, _id) {
+  const result = await axios.delete(`/api/post/${_id}`, {
+    headers: {
+      authorization: token
+    }
+  });
+  return {result: result.data}
+}
+
+
 export async function setComment (token, postId, message) {
   const result = await axios.post('/api/comment', {
     postId, 
@@ -31,4 +41,13 @@ export async function setComment (token, postId, message) {
     }
   }); 
   return {post: result.data}
+}
+
+export async function deleteComment(token, postId, commentId) {
+  const result = await axios.put(`/api/comment/${postId}/${commentId}`, {
+    headers: {
+      authorization: token
+    }
+  });
+  return {result: result.data}
 }

@@ -3,7 +3,7 @@ class Likes extends Component {
   render() {
     return (
       <div>
-        <Counter />
+        <Counter/>
       </div>
     );
   }
@@ -19,7 +19,7 @@ class Counter extends Component {
     }));
   };
   render() {
-    return <button onClick={this.handleClick}><span className="fas fa-thumbs-up"></span>{this.state.count}</button>;
+    return <div onClick={this.handleClick}><span className="fas fa-thumbs-up"></span>{this.state.count}</div>;
   }
 }
 

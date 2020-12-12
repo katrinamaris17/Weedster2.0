@@ -30,7 +30,7 @@ export default function (props) {
         <div>
             <form>
                 <textarea name="message" rows = "3" cols = "50" onChange = {handleInputChange} value={values.message}/>
-                <button onClick = {handleSubmit}>Submit</button>
+                <div onClick = {handleSubmit}>Submit</div>
             </form>
         </div>
     )

@@ -27,6 +27,10 @@ const PostSchema = new Schema(
           type: String,
           maxlength: 1000,
         },
+        isDeleted: {
+          type: Boolean,
+          default: false, 
+        },
         created_at: { 
           type: Date, 
           required: true, 
