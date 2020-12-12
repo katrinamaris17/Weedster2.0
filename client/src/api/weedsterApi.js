@@ -21,6 +21,19 @@ export async function setPost(token, category, caption) {
   return {post: result.data}
 }
 
+export async function setPostImage(token, category, caption, file) {
+  const formData = new FormData()
+  formData.append("caption", caption)
+  formData.append("category", category)
+  formData.append("file", file)
+  const result = await axios.post("/api/uploadimage", formData, {
+    headers: {
+      "content-type": "multipart/form-data",
+      authorization: token
+    }
+  });
+  return {post: result.data}
+}
 export async function deletePost (token, _id) {
   const result = await axios.delete(`/api/post/${_id}`, {
     headers: {

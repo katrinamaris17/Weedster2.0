@@ -1,5 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {getPosts, setPost, deletePost, setComment, deleteComment} from "../../api/weedsterApi";
+import {getPosts, setPost, deletePost, setComment, deleteComment, setPostImage} from "../../api/weedsterApi";
 
 const initialState = {
     posts: [],
@@ -129,10 +129,10 @@ export const fetchPosts = (token) => async (dispatch) => {
     } 
 }
 
-export const savePost = (token, category, caption) => async (dispatch) => {
+export const savePost = (token, category, caption, file) => async (dispatch) => {
     try {
         dispatch(setPostStart())
-        const post = await setPost(token, category, caption)
+        const post = await setPostImage(token, category, caption, file)
         dispatch(setPostSuccess(post))
         // const posts = await getPosts(token)
         // dispatch(getPostsSuccess(posts))

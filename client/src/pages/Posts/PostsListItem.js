@@ -55,6 +55,7 @@ export default function MediaCard(props) {
           title="image"
         /> */}
         <CardContent>
+          <img src={post.postPicture} alt="image"/>
           <Typography gutterBottom variant="h5" component='div'>
             {post.category}
           </Typography>
