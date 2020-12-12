@@ -26,7 +26,7 @@ export default function AddComment (props) {
         <div>
             <form>
                 <textarea rows = "3" cols = "50" onChange = {handleChange} value={comment}/>
-                <button onClick = {handleSubmit}>Submit</button>
+                <div onClick = {handleSubmit}>Submit</div>
             </form>
         </div>
     )
