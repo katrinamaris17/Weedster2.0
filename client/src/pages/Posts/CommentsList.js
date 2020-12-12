@@ -6,9 +6,11 @@ export default function (props){
   return (
     <ul>
       {comments.map((comment) => (
+        comment.isDeleted === false ?
         <li key={comment._id}>
-          <CommentsListItem comment={comment}/>
+          <CommentsListItem postId={props.postId} comment={comment}/>
         </li>
+        : null
       ))}
     </ul>
   )

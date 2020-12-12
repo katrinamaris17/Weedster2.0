@@ -1,5 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {getPosts, setPost, setComment} from "../../api/weedsterApi";
+import {getPosts, setPost, deletePost, setComment, deleteComment} from "../../api/weedsterApi";
 
 const initialState = {
     posts: [],
@@ -49,7 +49,15 @@ const posts = createSlice({
             state.error=null
         },
         deletePostUI(state, action) {
-            state.posts.pop(action.payload)
+            console.log('this is the delete action ', action)
+            const array = state.posts.filter(post => {
+                if (post._id === action.payload.post_id){
+                    return false
+                } else {
+                    return true
+                }
+            })
+            state.posts=array
         },
         setCommentStart(state, action) {
             state.isSaving=true
@@ -71,6 +79,26 @@ const posts = createSlice({
             state.isSaving=false
             state.error=null
         },
+        deleteCommentUI(state, action) {
+            const array = state.posts.map(post => {
+                if (post._id === action.payload.post_id){
+                    return {
+                        ...post,
+                        comments: post.comments.filter((comment) => {
+                            if (comment._id === action.payload.comment_id) {
+                                return false
+                            } else {
+                                return true
+                            }
+                        })
+                    }
+                } else {
+                    return post
+                }
+            })
+            console.log('this is the delete comment action ', action, array)
+            state.posts=array
+        }
     },
 });
 
@@ -86,6 +114,7 @@ export const {
     setCommentStart,
     setCommentFailure,
     setCommentSuccess,
+    deleteCommentUI,
 } = posts.actions;
 
 export default posts.reducer;
@@ -112,6 +141,15 @@ export const savePost = (token, category, caption) => async (dispatch) => {
     }
 }
 
+export const removePost = (token, post_id) => async (dispatch) => {
+    try {
+        const post = await deletePost(token, post_id)
+        dispatch(deletePostUI({post_id: post_id}))
+    } catch (error) {
+        throw new error
+    }
+}
+
 export const saveComment = (token, postId, message) => async (dispatch) => {
     try {
         dispatch(setCommentStart())
@@ -121,5 +159,14 @@ export const saveComment = (token, postId, message) => async (dispatch) => {
         // dispatch(getPostsSuccess(posts))
     } catch (error) {
         dispatch(setCommentFailure(error.toString()))
+    }
+}
+
+export const removeComment = (token, postId, commentId) => async (dispatch) => {
+    try {
+        const comment = await deleteComment(token, postId, commentId)
+        dispatch(deleteCommentUI({post_id: postId, comment_id: commentId}))
+    } catch (error) {
+        throw new error
     }
 }
