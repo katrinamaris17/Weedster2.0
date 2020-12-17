@@ -13,18 +13,26 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Likes from "./Likes";
+import Grid from '@material-ui/core/Grid';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 750,
     margin: '10px',
+    flexGrow: 1,
   },
+
   media: {
     maxHeight: '80%',
     maxWidth: '80%',
     marginLeft: '10%',
   },
-});
+
+  buttons: {
+    marginRight: '10px',
+    fontSize: '9px',
+  }
+}));
 
 export default function MediaCard(props) {
   const classes = useStyles();
@@ -65,12 +73,24 @@ export default function MediaCard(props) {
           <Typography gutterBottom variant="h5" component='div'>
             {post.caption}
           </Typography>
-          <Typography variant="body2" color="textSecondary" component='div'>
-            <div>author: {post.author.username}</div>
-            <div>
-              {/* time: <ReactTimeAgo date={post.createdAt} locale="en-US" /> */}
+          <Typography variant="body2" component='div' color='textSecondary'>
+            author: {post.author.username}
+          </Typography>
+          <Typography variant="body2" component='div' color='textSecondary'>
+            <ReactTimeAgo date={post.createdAt} locale="en-US" />
+          </Typography>
+          <Grid container spacing={3}>
+            <Grid item xs>
+            <Button className={classes.buttons} variant="contained" color="primary">
               <Likes />
-              <div  onClick={() => deleteHandler(post._id)}>DELETE POST</div>
+            </Button>
+            <Button variant="contained" color="secondary" onClick={() => deleteHandler(post._id)}>
+            <span className='fa fa-trash-o'></span>
+              </Button>
+            </Grid>
+          </Grid>
+          <Typography variant="body2" color="textSecondary" component='div'>
+            <div>
               <CommentsList postId={post._id} comments={post.comments} />
               <CommentAdd postId={post._id} />
             </div>
@@ -80,3 +100,6 @@ export default function MediaCard(props) {
     </Card>
   );
 }
+
+
+
