@@ -12,8 +12,9 @@ import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 345,
-    margin: '10px',
+    maxWidth: "90%",
+    margin: "10px",
+    backgroundColor: "#F3F3F6",
   },
   media: {
     height: 140,
@@ -38,19 +39,23 @@ export default function (props) {
           <CardContent>
             <div>
               <Typography>{comment.message}</Typography>
-              <Typography>owner: {comment.owner.username}</Typography>
-              <div><ReactTimeAgo date={comment.created_at} locale="en-US"/></div>
+              <Typography variant="body2" component="div" color="textSecondary">
+                owner: {comment.owner.username}
+              </Typography>
+              <Typography variant="body2" component="div" color="textSecondary">
+                <ReactTimeAgo date={comment.created_at} locale="en-US" />
+              </Typography>
             </div>
           </CardContent>
         </div>
         <CardActions>
-          <div
-            size="small"
-            color="primary"
+          <Button
+            variant="contained"
+            color="secondary"
             onClick={() => deleteHandler(comment._id)}
           >
-            DELETE COMMENT
-          </div>
+            <span className="fa fa-trash-o"></span>
+          </Button>
         </CardActions>
       </Card>
     </div>

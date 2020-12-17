@@ -4,14 +4,14 @@ import CommentsListItem from "./CommentsListItem.js";
 export default function (props){
   const {comments}=props;
   return (
-    <ul>
+    <div>
       {comments.map((comment) => (
         comment.isDeleted === false ?
-        <li key={comment._id}>
+        <div key={comment._id}>
           <CommentsListItem postId={props.postId} comment={comment}/>
-        </li>
+        </div>
         : null
       ))}
-    </ul>
+    </div>
   )
 }
