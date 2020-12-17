@@ -23,8 +23,8 @@ const useStyles = makeStyles((theme) => ({
   },
 
   media: {
-    maxHeight: '80%',
-    maxWidth: '80%',
+    maxHeight: '450px',
+    maxWidth: '550px',
     marginLeft: '10%',
   },
 
