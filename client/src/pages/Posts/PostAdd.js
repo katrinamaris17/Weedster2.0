@@ -70,7 +70,7 @@ export default function (props){
         </select>
         <TextField
           id="outlined-multiline-static"
-          label="Multiline"
+          label=""
           multiline
           rows={4}
           defaultValue="Default Value"
