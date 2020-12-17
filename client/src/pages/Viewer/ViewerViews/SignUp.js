@@ -3,9 +3,9 @@ import { reduxForm, Field } from 'redux-form';
 import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
 import Button from '@material-ui/core/Button';
-
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import { makeStyles } from '@material-ui/core/styles';
 import { setViewerToken } from '../ViewerReducer';
 // The Field components job is to render out input html
 // and pass down functions for updating the state
@@ -22,6 +22,15 @@ import { setViewerToken } from '../ViewerReducer';
 //     // label={label}
 //   />;
 // };
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& .MuiTextField-root': {
+      margin: theme.spacing(1),
+      width: '25ch',
+    },
+  },
+}));
 
 const TextFieldInput = ({ input, meta, label }) => {
   // console.log('FIELD COMPONENT PROPS', props);
@@ -44,6 +53,7 @@ class SignUp extends Component {
 
   handleSignUp = async (formValues) => {
     console.log(formValues);
+    // const classes = useStyles();
     //{ username: 'Your enterereduseRName', password: 'your password' }
     try {
       const res = await axios.post('/auth/signup', formValues);

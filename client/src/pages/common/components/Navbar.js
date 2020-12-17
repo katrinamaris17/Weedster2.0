@@ -21,8 +21,11 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   navBackgroundColor : {
-    backgroundColor: '#90b144',
+    backgroundColor: '#FF652F',
+    borderBottomColor: '#FFE400',
+    borderBottom: '5px solid',
   }
+
  
 }));
 
@@ -42,12 +45,12 @@ export default function ButtonAppBar() {
     <div className={classes.root}>
       <AppBar position="static" className={classes.navBackgroundColor}>
         <Toolbar>
-          <Button
+          {/* <Button
             component={Link}
             to='/'
             color="inherit">
             Username
-          </Button>
+          </Button> */}
           {/* <Button
             component={Link}
             to='/Feature'

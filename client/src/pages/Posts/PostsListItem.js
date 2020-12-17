@@ -17,9 +17,12 @@ import Likes from "./Likes";
 const useStyles = makeStyles({
   root: {
     maxWidth: 750,
+    margin: '10px',
   },
   media: {
-    height: 100,
+    maxHeight: '80%',
+    maxWidth: '80%',
+    marginLeft: '10%',
   },
 });
 
@@ -55,10 +58,10 @@ export default function MediaCard(props) {
           title="image"
         /> */}
         <CardContent>
-          <img src={post.postPicture} alt="image"/>
-          <Typography gutterBottom variant="h5" component='div'>
+        <Typography gutterBottom variant="h5" component='div'>
             {post.category}
           </Typography>
+          <img className={classes.media} src={post.postPicture} alt="image"/>
           <Typography gutterBottom variant="h5" component='div'>
             {post.caption}
           </Typography>
