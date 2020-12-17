@@ -4,12 +4,12 @@ import PostsListItem from "./PostsListItem";
 export default function (props){
   const {posts}=props;
   return (
-    <ul>
+    <div>
       {posts.map((post) => (
-        <li key={post._id}>
+        <div key={post._id}>
           <PostsListItem post={post}/>
-        </li>
+        </div>
       ))}
-    </ul>
+    </div>
   )
 }
