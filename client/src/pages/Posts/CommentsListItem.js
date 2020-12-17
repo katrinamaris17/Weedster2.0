@@ -13,6 +13,7 @@ import Typography from "@material-ui/core/Typography";
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
+    margin: '10px',
   },
   media: {
     height: 140,
@@ -38,7 +39,7 @@ export default function (props) {
             <div>
               <Typography>{comment.message}</Typography>
               <Typography>owner: {comment.owner.username}</Typography>
-              {/* <div>time: <ReactTimeAgo date={comment.created_at} locale="en-US"/></div> */}
+              <div><ReactTimeAgo date={comment.created_at} locale="en-US"/></div>
             </div>
           </CardContent>
         </div>
